@@ -1,14 +1,13 @@
 const jwt = require('jsonwebtoken');
 
-const Models = require('./models');
-const Schemas = require('./validation');
+const Users = require('./models').Users;
 const utils = require('../../utils');
 
-exports.registerUser = async (req, res) => await utils.routeTemplate({ schema: Schemas.user, req, res }, async () => {
-    const user = await Models.ModelUsers.findOne({ username: req.body.username });
+exports.registerUser = async (req, res) => {
+    const user = await Users.findOne({ username: req.body.username });
 
     if (!user) {
-        const user = await new Models.ModelUsers({
+        const user = await new Users({
             username: req.body.username,
             firstName: req.body.firstName,
             lastName: req.body.lastName,
@@ -20,10 +19,10 @@ exports.registerUser = async (req, res) => await utils.routeTemplate({ schema: S
     }
 
     res.status(400).send({ msg: `the username '${req.body.username}' is already in use` });
-});
+};
 
-exports.login = async (req, res) => await utils.routeTemplate({ schema: Schemas.loginUser, req, res }, async () => {
-    const foundUser = await Models.ModelUsers.findOne({ username: req.body.username });
+exports.login = async (req, res) => {
+    const foundUser = await Users.findOne({ username: req.body.username });
     const decryptedPassword = utils.decrypt(foundUser.password);
     const isValidLoginAndPassword = foundUser && decryptedPassword === req.body.password;
 
@@ -37,17 +36,18 @@ exports.login = async (req, res) => await utils.routeTemplate({ schema: Schemas.
     }
 
     res.status(400).send({ msg: `the username or password is incorrect` });
-});
+};
 
-exports.updateUser = async (req, res) => await utils.routeTemplate({ schema: Schemas.user, req, res, checkToken: true }, async () => {
+exports.updateUser = async (req, res) => {
     if (!req.params.username) {
         return res.status(400).send({ msg: "The queries username is missing" });
     }
 
-    const foundUser = await Models.ModelUsers.findOne({ username: req.params.username });
+
+    const foundUser = await Users.findOne({ username: req.params.username });
 
     if (foundUser) {
-        const updatedUser = await Models.ModelUsers.updateOne(
+        const updatedUser = await Users.updateOne(
             { username: req.params.username },
             {
                 username: req.body.username,
@@ -65,20 +65,20 @@ exports.updateUser = async (req, res) => await utils.routeTemplate({ schema: Sch
 
     res.status(400).send({ msg: `The username '${req.params.username}' doesn\'t exist` });
 
-});
+};
 
-exports.removeUser = async (req, res) => await utils.routeTemplate({ req, res, checkToken: true }, async () => {
+exports.removeUser = async (req, res) => {
     if (!req.params.username) {
         return res.status(400).send({ msg: "The username is required" });
     }
 
-    const foundUser = await Models.ModelUsers.findOne({ username: req.params.username });
+    const foundUser = await Users.findOne({ username: req.params.username });
 
     if (foundUser) {
-        const removedUser = await Models.ModelUsers.deleteOne({ username: req.params.username });
+        const removedUser = await Users.deleteOne({ username: req.params.username });
 
         return res.status(200).send(removedUser);
     }
 
     res.status(400).send({ msg: `The username '${req.params.username}' doesn\'t exist` });
-});
+};

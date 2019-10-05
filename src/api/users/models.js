@@ -10,4 +10,4 @@ const UsersSchema = new mongoose.Schema({
     updatedAt: Date,
 }, { timestamps: true });
 
-module.exports.ModelUsers = mongoose.model('Users', UsersSchema);
+module.exports.Users = mongoose.model('Users', UsersSchema);
