@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
-const routes = require('../api').routes;
+const routes = require('../api/users').routes;
 
 module.exports = async ({ app }) => {
     const router = express.Router();
@@ -15,11 +15,11 @@ module.exports = async ({ app }) => {
     app.use('/api/v1/', router);
 
     app.use((req, res, next) => {
-        res.status(404).send({ message: `The route '${req.url}'  Not found.` });
+        res.status(404).send(`The route '${req.url}'  Not found.`);
     });
 
     app.use((err, req, res, next) => {
-        res.status(500).send({ error: err });
+        res.status(500).send(err);
     });
 
     return app;

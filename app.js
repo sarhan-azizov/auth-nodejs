@@ -1,6 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv');
-const loaders = require('./loaders');
+const loaders = require('./src/loaders');
 
 process.env.TZ = "Europe/Kiev";
 
