@@ -9,10 +9,11 @@ module.exports = async (req, res, next) => {
     }
 
     const verifiedToken = await jwt.verify(token, utils.secret);
+    const isTokenExpired = Date.now()  > verifiedToken.exp;
 
-    if (Boolean(verifiedToken)) {
+    if (Boolean(verifiedToken) && !isTokenExpired) {
         next();
     } else {
-        res.status(412).send(verifiedToken);
+        res.status(401).send({ msg: "Authentication Token expired or not valid" });
     }
 };

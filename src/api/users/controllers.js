@@ -23,6 +23,11 @@ exports.registerUser = async (req, res) => {
 
 exports.login = async (req, res) => {
     const foundUser = await Users.findOne({ username: req.body.username });
+
+    if (!foundUser) {
+        return res.status(400).send({ msg: `the username or password is incorrect` });
+    }
+
     const decryptedPassword = utils.decrypt(foundUser.password);
     const isValidLoginAndPassword = foundUser && decryptedPassword === req.body.password;
 
