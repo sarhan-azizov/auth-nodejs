@@ -43,7 +43,6 @@ exports.updateUser = async (req, res) => {
         return res.status(400).send({ msg: "The queries username is missing" });
     }
 
-
     const foundUser = await Users.findOne({ username: req.params.username });
 
     if (foundUser) {

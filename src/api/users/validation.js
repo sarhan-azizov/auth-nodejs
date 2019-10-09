@@ -1,6 +1,6 @@
 const Joi = require('@hapi/joi');
 
-module.exports.user = Joi.object({
+module.exports.userSchema = Joi.object({
     username: Joi.string().pattern(/^[a-zA-Z0-9\-]{3,100}$/)
         .required(),
     firstName: Joi.string()
@@ -18,7 +18,7 @@ module.exports.user = Joi.object({
     repeatPassword: Joi.ref('password'),
 });
 
-module.exports.loginUser = Joi.object({
+module.exports.loginUserSchema = Joi.object({
     username: Joi.string().pattern(/^[a-zA-Z0-9\-]{3,100}$/)
         .required(),
     password: Joi.string()

@@ -1,18 +1,15 @@
-const Controllers = require('./controllers');
-const middlewares = require('../../middlewares');
-const Schemas = require('./validation');
-
-const { withAuth, withBodyValidation } = middlewares;
-const { registerUser, login, updateUser, removeUser } = Controllers;
+const { registerUser, login, updateUser, removeUser } = require('./controllers');
+const { withAuth, withBodyValidation } = require('../../middlewares');
+const { userSchema, loginUserSchema } = require('./validation');
 
 module.exports = async router => {
     router.route('/users/register')
-        .post(withBodyValidation(Schemas.user), registerUser);
+        .post(withBodyValidation(userSchema), registerUser);
 
     router.route('/users/login')
-        .post(withBodyValidation(Schemas.loginUser), login);
+        .post(withBodyValidation(loginUserSchema), login);
 
     router.route('/users/:username')
-        .put(withAuth, withBodyValidation(Schemas.user), updateUser)
+        .put(withAuth, withBodyValidation(userSchema), updateUser)
         .delete(withAuth, removeUser);
 };
