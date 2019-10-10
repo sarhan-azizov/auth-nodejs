@@ -5,7 +5,7 @@ module.exports = async (req, res, next) => {
     const token = req.header('Authorization');
 
     if (!token) {
-        return res.status(412).send({ msg: "Missing Authentication Token." });
+        return res.status(412).send({ error: "Missing Authentication Token." });
     }
 
     const verifiedToken = await jwt.verify(token, utils.secret);
@@ -14,6 +14,6 @@ module.exports = async (req, res, next) => {
     if (Boolean(verifiedToken) && !isTokenExpired) {
         next();
     } else {
-        res.status(401).send({ msg: "Authentication Token expired or not valid" });
+        res.status(401).send({ error: "Authentication Token expired or not valid" });
     }
 };

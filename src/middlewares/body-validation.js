@@ -4,7 +4,7 @@ const validateBody = (schema, value) => {
     return error ? error.details : null;
 };
 
-module.exports = schema => async (req, res, next) => {
+module.exports = schema => (req, res, next) => {
     const bodiesErrors = validateBody(schema, req.body);
 
     if (bodiesErrors) {

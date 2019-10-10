@@ -2,7 +2,7 @@ const { registerUser, login, updateUser, removeUser } = require('./controllers')
 const { withAuth, withBodyValidation } = require('../../middlewares');
 const { userSchema, loginUserSchema } = require('./validation');
 
-module.exports = async router => {
+module.exports = router => {
     router.route('/users/register')
         .post(withBodyValidation(userSchema), registerUser);
 
