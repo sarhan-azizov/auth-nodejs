@@ -1,10 +1,5 @@
 const express = require('express');
-const dotenv = require('dotenv');
 const loaders = require('./src/loaders');
-
-process.env.TZ = "Europe/Kiev";
-
-dotenv.config();
 
 async function startServer() {
     const app = express();
