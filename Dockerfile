@@ -1,8 +1,7 @@
 FROM node:latest
-RUN mkdir -p /build
-WORKDIR /build
-COPY package.json /build
+RUN mkdir -p app
+WORKDIR app
+COPY . app
 RUN npm install
-COPY . /build
-EXPOSE 3000
+EXPOSE 5000
 CMD [ "npm", "start" ]
