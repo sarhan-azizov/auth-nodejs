@@ -1,5 +1,5 @@
 {
-  "name": "cars.com",
+  "name": "auth-nodejs",
   "version": "1.0.0",
   "description": "text",
   "main": "index.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@gitlab.com/vsmir/cars.com.git"
+    "url": "git+ssh://git@gitlab.com/vsmir/auth-nodejs.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://gitlab.com/vsmir/cars.com/issues"
+    "url": "https://gitlab.com/vsmir/auth-nodejs/issues"
   },
-  "homepage": "https://gitlab.com/vsmir/cars.com#readme",
+  "homepage": "https://gitlab.com/vsmir/auth-nodejs#readme",
   "dependencies": {
     "@hapi/joi": "^16.1.4",
     "body-parser": "^1.19.0",
