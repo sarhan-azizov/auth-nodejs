@@ -9,23 +9,27 @@ Docker push sarhan/auth-nodejs:latest
 ## Launch
 docker-compose up
 
-
 ## Helpers
 
 #### Containers
-#delete all containers
+delete all containers
 docker rm -f $(docker ps -a -q) 
 Docker ps -a
 
-docker run -it --rm --net=sarhan-network image
+docker run -it --rm imageId
 docker exec -it containerId bash
 
 ### Images
-#delete all containers 
+delete all containers 
 docker rmi -f $(docker images -q)
 Docker images
 
+#Purging All Unused or Dangling Images, Containers, Volumes, and Networks
 docker system prune
+docker volume prune
+docker volume rm auth-nodejs_auth-volume
+docker volume ls
+docker volume inspect auth-nodejs_auth-volume
 
 docker exec -it IMAGE_ID /bin/sh
 Docker images
