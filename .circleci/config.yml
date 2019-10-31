@@ -22,4 +22,4 @@ jobs:
             mv ~/docker-compose /usr/local/bin/docker-compose
       - run:
           name: ls
-          command: docker-compose up
+          command: docker-compose up -d
