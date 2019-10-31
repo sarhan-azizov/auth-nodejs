@@ -21,5 +21,5 @@ jobs:
             chmod +x ~/docker-compose
             mv ~/docker-compose /usr/local/bin/docker-compose
       - run:
-          name: asdasd
+          name: ls
           command: "ls"
