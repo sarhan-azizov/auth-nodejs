@@ -1,3 +1,4 @@
+TEST
 ## Build Image
 docker image build -t auth-nodejs .
 
