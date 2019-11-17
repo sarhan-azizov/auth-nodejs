@@ -1,6 +1,5 @@
-language: node_js
-node_js:
-  - "10"
+services:
+  - docker
 env:
   - DOCKER_COMPOSE_VERSION=1.4.2
 before_install:
@@ -9,7 +8,7 @@ before_install:
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
 before_script:
-  - docker-compose up --no-recreate -d
+  - docker-compose up --build -d
 script:
   - npm test
 after_success:
