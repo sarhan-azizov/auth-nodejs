@@ -14,7 +14,7 @@ docker-compose up
 
 #### Containers
 delete all containers
-docker rm -f $(docker ps -a -q) 
+sudo docker rm -f $(sudo docker ps -a -q) 
 Docker ps -a
 
 docker run -it --rm imageId
@@ -22,8 +22,8 @@ docker exec -it containerId bash
 
 ### Images
 delete all containers 
-docker rmi -f $(docker images -q)
-Docker images
+sudo docker rmi -f $(sudo docker images -q)
+docker images
 
 #Purging All Unused or Dangling Images, Containers, Volumes, and Networks
 docker system prune
