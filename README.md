@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/sarhan-azizov/auth-nodejs.svg?branch=master)](https://travis-ci.org/sarhan-azizov/auth-nodejs) 
+
 TEST
 ## Build Image
 docker image build -t auth-nodejs .
