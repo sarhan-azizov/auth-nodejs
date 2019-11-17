@@ -9,7 +9,5 @@ before_install:
   - sudo mv docker-compose /usr/local/bin
 before_script:
   - docker-compose up --build -d
-script:
-  - npm test
 after_success:
   - sh .travis/deploy.sh
