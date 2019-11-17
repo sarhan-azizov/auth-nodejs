@@ -8,6 +8,6 @@ before_install:
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
 before_script:
-  - sudo docker-compose up --build -d
+  - sudo docker-compose up -d
 after_success:
   - sh .travis/deploy.sh
